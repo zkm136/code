@@ -37,6 +37,7 @@ int main()
 			default:
 			{
 				printf("输入错误，请重新输入：\n");
+				system("pause");
 				break;
 			}
 		}

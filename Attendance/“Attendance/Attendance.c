@@ -2,74 +2,84 @@
 
 void Staff(PInfo**head)
 {
+	system("cls");
 	loadStaff(*head);
 	int temp = 1;
 	char option;
 	do
 	{
+		system("cls");
 		printf("请输入选项\n");
 		printf("--------------------------\n");
 		printf("         1.创建账号       \n");
 		printf("         2.登录账号       \n");
 		printf("       0.返回选择界面     \n");
 		option = getch();
+		system("cls");
 		switch (option)
 		{
 		case '1':
 		{
-			PushBack(*head);
+			PushBack(*head,0);
 			break;
 		}
 		case '2':
 		{
 			PInfo*current=StuffAccount(* head);
+			system("cls");
 			if (current!=NULL)
 			{
 				int tem = 1;
 				do
 				{
+					system("cls");
 					MenuStuff();
 					char op = getch();
 					switch (op)
 					{
 					case '1':
 					{
+						system("cls");
 						printf("打卡\n");
 						CheckIntime(head, current);
+						system("pause");
 						break;
 					}
 					case '2':
 					{
+						system("cls");
 						printf("请假\n");
 						RequestLeave(head, current);
-
+						system("pause");
 						break;
 					}
 					case '3':
 					{
-						printf("出差\n");
+						system("cls");
+						printf("签退\n");
+						CheckOutTime(head, current);
+						system("pause");
 						break;
 					}
 					case '4':
 					{
-						printf("签退\n");
-						CheckOutTime(head, current);
-						break;
-					}
-					case '5':
-					{
+						system("cls");
 						printf("考勤记录");
+						system("pause");
 						break;
 					}
 					case '0':
 					{
+						system("cls");
 						printf("退出登录");
 						tem = 0;
 						break;
 					}
 					default:
 					{
+						system("cls");
 						printf("输入错误请重新输入：\n");
+						system("pause");
 					}
 					}
 				} while (tem);
@@ -102,6 +112,7 @@ void Admin(PInfo** head)
 	char option;
 	do
 	{
+		system("cls");
 		printf("请输入选项\n");
 		printf("--------------------------\n");
 		printf("         1.注册账号       \n");
@@ -112,7 +123,7 @@ void Admin(PInfo** head)
 		{
 		case '1':
 		{
-			PushBack(*head);
+			PushBack(*head,1);
 			break;
 		}
 		case '2':
@@ -124,50 +135,61 @@ void Admin(PInfo** head)
 				char op;
 				do
 				{
+					system("cls");
 					MenuAdmin();
 					op = getch();
 					switch (op)
 					{
 					case '1':
 					{
+						system("cls");
 						printf("增加员工\n");
-						PushBack(*head);
+						PushBack(*head,0);
 						break;
 					}
 					case '2':
 					{
+						system("cls");
 						printf("查看员工信息\n");
 						PrintData(*head);
+						system("pause");
 						break;
 					}case '3':
 					{
-						PrintData(*head);
-						printf("删除员工\n");
+						system("cls");
 						PopMid(* head);
-						printf("删除完成\n");
-						PrintData(*head);
+						system("pause");
 						break;
 					}case '4':
 					{
+						system("cls");
 						printf("修改员工信息\n");
 						UpdateStaffInfo(*head);
+						system("pause");
 						break;
 					}case '5':
 					{
+						system("cls");
 						printf("请假批准\n");
 						approveLeaveRequest(*head);
+						system("pause");
 						break;
 					}case '0':
 					{
+						system("cls");
 						printf("退出登录\n");
 						tem = 0;
 						break;
 					}
 					default:
 					{
+						system("cls");
 						printf("输入错误请重新输入：\n");
+						system("pause");
+						break;
 					}
 					}
+
 				} while (tem);
 			}
 			break;
@@ -180,6 +202,7 @@ void Admin(PInfo** head)
 		}
 		default:
 			printf("输入错误，请重新输入\n");
+			system("pause");
 			break;
 		}
 	} while (temp);
@@ -190,10 +213,12 @@ void Admin(PInfo** head)
 
 int AdminAccount(PInfo* head)
 {
+	system("cls");
 	int op = 1;
 	char c;
 	while (op)
 	{
+		system("cls");
 		printf("请输入你管理员账号：\n");
 		char Account[20];
 		scanf("%s", Account);
@@ -204,33 +229,41 @@ int AdminAccount(PInfo* head)
 		while (current->next != NULL)
 		{
 			current = current->next;
-			if (strcmp(current->data.account,Account)==0)
-				if (strcmp(current->data.password,Password)==0)
-					return 1;
+			if (strcmp(current->data.account, Account) == 0)
+				if (strcmp(current->data.password, Password) == 0)
+					if (current->data.judge == 1)
+						return 1;
 
 		}
+		int a = 1;
 		printf("账号或密码存在错误\n");
-		printf("----------------------------\n");
-		printf("          请选择           :\n");
-		printf("       1.重新输入           \n");
-		printf("       0.推出程序           \n");
-		c = getch();  
-		switch (c)
+		while (a)
 		{
-		case '1':
-		{
-			break;
-		}
-		case '0':
-		{
-			op = 0;
-			break;
-		}
-		default:
-		{
-			printf("输入错误，请重新输入");
-			break;
-		}
+			printf("----------------------------\n");
+			printf("          请选择           :\n");
+			printf("       1.重新输入           \n");
+			printf("       0.退出程序           \n");
+			c = getch();
+			switch (c)
+			{
+			case '1':
+			{
+				a = 0;
+				break;
+			}
+			case '0':
+			{
+				op = 0;
+				a = 0;
+				break;
+			}
+			default:
+			{
+				system("cls");
+				printf("输入错误，请重新输入\n");
+				break;
+			}
+			}
 		}
 	}
 	return 0;
@@ -285,7 +318,7 @@ void SaveStaff(PInfo* head)
 }
 
 
-void PushBack(PInfo*head)
+void PushBack(PInfo*head,int judge)
 {
 	loadStaff(head);
 	PInfo* tem = (PInfo*)malloc(sizeof(PInfo));
@@ -296,26 +329,48 @@ void PushBack(PInfo*head)
 	}
 	InfoDate PersonData;
 	printf("请输入账户：\n");
-	scanf("%s",PersonData.account);
-	printf("请输入密码：\n");
-	scanf("%s", PersonData.password);
+	scanf("%s", PersonData.account);
 	printf("请输入用户名：\n");
 	scanf("%s", PersonData.user);
+
+	PInfo* current = head;
+	while (current != NULL)
+	{
+		if (strcmp(current->data.account, PersonData.account) == 0)
+		{
+			printf("账户名已存在\n");
+			system("pause");
+			return;
+		}
+		if (strcmp(current->data.user, PersonData.user) == 0)
+		{
+			printf("用户名已存在\n");
+			system("pause");
+			return;
+		}
+		current = current->next;
+	}
+
+	printf("请输入密码：\n");
+	scanf("%s", PersonData.password);
 	tem->next = NULL;
 	tem->data.leave = 0;
 	tem->data.time.checkIn = 0;
 	tem->data.time.checkOut = 0;
+	tem->data.judge = judge;
 	strcpy(tem->data.account, PersonData.account);
 	strcpy(tem->data.password, PersonData.password);
 	strcpy(tem->data.user, PersonData.user);
-	PInfo* current = head;
-	while (current->next!=NULL)
+
+	current = head;
+	while (current->next != NULL)
 	{
 		current = current->next;
 	}
 	current->next = tem;
 	SaveStaff(head);
-	
+	printf("注册成功");
+	system("pause");
 }
 void PrintData(PInfo* head)
 {
@@ -327,14 +382,16 @@ void PrintData(PInfo* head)
 	int op = 1;
 	while (op)
 	{
-		printf("1.查看全部员工信息\n");
-		printf("2.查看某一员工信息\n");
+		system("cls");
+		printf("1.查看全部人员信息\n");
+		printf("2.查看某一人信息\n");
 		printf("0.退出\n");
 		char c = getch();
 		switch (c)
 		{
 		case '1':
 		{
+			system("cls");
 			PInfo* current = head;
 			while (current->next != NULL)
 			{
@@ -347,8 +404,13 @@ void PrintData(PInfo* head)
 				printf("%s    ", current->data.user);
 				printf("共计成功打卡%d次   ", current->data.time.checkIn);
 				printf("共计成功签退%d次   ", current->data.time.checkOut);
+				if (current->data.judge == 1)
+					printf("管理员   ");
+				else
+					printf("员工   ");
 				printf("\n");
 			}
+			system("pause");
 			break;
 		}
 		case '2':
@@ -357,6 +419,7 @@ void PrintData(PInfo* head)
 			PInfo* cur = head;
 			while (opt)
 			{
+				system("cls");
 				printf("请输入您要查看员工的用户名:\n");
 				char s[50];
 				scanf("%s", s);
@@ -366,8 +429,10 @@ void PrintData(PInfo* head)
 					opt = 0;
 				else
 				{
+					system("cls");
 					printf("输入错误，请重新输入");
 					cur = head;
+					system("pause");
 				}
 			}
 			printf("账号:");
@@ -378,7 +443,11 @@ void PrintData(PInfo* head)
 			printf("%s    ", cur->data.user);
 			printf("共计成功打卡%d次   ", cur->data.time.checkIn);
 			printf("共计成功签退%d次   ", cur->data.time.checkOut);
-			printf("\n");
+			if (cur->data.judge == 1)
+				printf("管理员   ");
+			else
+				printf("员工   ");
+			system("pause");
 			break;
 		}
 		case '0':
@@ -389,6 +458,7 @@ void PrintData(PInfo* head)
 		default:
 		{
 			printf("输入错误，请重新输入：\n");
+			system("pause");
 			break;
 		}
 		}
@@ -401,23 +471,54 @@ void PrintData(PInfo* head)
 void PopMid(PInfo*head)
 {
 	loadStaff(head);
-	PInfo* cur = head->next;
-	PInfo* tem = head;
-	printf("请输入账号：\n");
-	char s[100] ;
-	scanf("%s", s);
-	while (cur->next)
+	int op = 1;
+	while (op)
 	{
-		if (strcmp(cur->data.account,s)==0)
+		system("cls");
+		PInfo* cur = head->next;
+		PInfo* tem = head;
+		printf("1.删除用户\n");
+		printf("0.退出\n");
+		char c = getch();
+		switch (c)
 		{
+		case '1':
+		{
+			system("cls");
+			printf("请输入需要删除用户的用户名：\n");
+			char s[100];
+			scanf("%s", s);
+			while (cur->next != NULL)
+			{
+				if (strcmp(cur->data.user, s) == 0)
+				{
+					break;
+				}
+				cur = cur->next;
+				tem = tem->next;
+			}
+			if (strcmp(cur->data.user, s) == 0)
+			{
+				tem->next = cur->next;
+				op = 0;
+				printf("删除成功");
+			}
+			else
+			{
+				printf("输入错误，请重新输入：\n");
+				system("pause");
+			}
 			break;
 		}
-		cur = cur->next;
-		tem =tem->next ;
+		case '0':
+		{
+			op = 0;
+			break;
+		}
+		default:
+			printf("输入错误，请重新输入");
+		}
 	}
-	tem->next = cur->next;
-	free(cur);
-	cur = NULL;
 	SaveStaff(head);
 }
 void UpdateStaffInfo(PInfo*head)
@@ -427,6 +528,7 @@ void UpdateStaffInfo(PInfo*head)
 	char tem;
 	do
 	{
+		system("cls");
 		printf("        操作        \n");
 		printf("   1.修改用户信息   \n");
 		printf("      0.返回        \n");
@@ -439,10 +541,11 @@ void UpdateStaffInfo(PInfo*head)
 			PInfo* cur = head->next;
 			do
 			{
+				system("cls");
 				printf("请输入您要修改的用户的账号：\n");
 				char account[20];
 				scanf("%s", account);
-				while (cur->next)
+				while (cur->next!=NULL)
 				{
 					if (strcmp(cur->data.account, account)==0)
 					{
@@ -458,12 +561,14 @@ void UpdateStaffInfo(PInfo*head)
 				else
 				{
 					printf("查无此人，请重新输入\n");
+					system("pause");
 				}
 			} while (1);
 			int tem = 1;
 			char c;
 			do
 			{
+				system("cls");
 				printf("请问您要修改的数据是\n");
 				printf("1.用户名\n");
 				printf("0.退出修改\n");
@@ -476,6 +581,8 @@ void UpdateStaffInfo(PInfo*head)
 					char user[20];
 					scanf("%s", user);
 					strcpy(cur->data.user,user);
+					printf("修改成功\n");
+					system("pause");
 					break;
 				}
 				case '0':
@@ -486,6 +593,7 @@ void UpdateStaffInfo(PInfo*head)
 				default :
 				{
 					printf("输入错误，请重新输入：");
+					system("pause");
 					break;
 				}
 				}
@@ -533,12 +641,13 @@ void CheckIntime(PInfo* head,PInfo*current)
 	}
 	SaveStaff(head);
 }
-PInfo* StuffAccount(PInfo* head)
+PInfo* StuffAccount(PInfo* head )
 {
 	char c;
 	int op = 1;
 	while (op)
 	{
+		system("cls");
 		printf("请输入你的员工账号：\n");
 		char Account[20];
 		scanf("%s", Account);
@@ -551,32 +660,41 @@ PInfo* StuffAccount(PInfo* head)
 			current = current->next;
 			if (strcmp(current->data.account, Account) == 0)
 				if (strcmp(current->data.password, Password) == 0)
-					return current;
+					if(current->data.judge ==0)
+						return current;
 
 		}
+		int a = 1;
 		printf("账号或密码存在错误\n");
-		printf("----------------------------\n");
-		printf("          请选择           :\n");
-		printf("       1.重新输入           \n");
-		printf("       0.推出程序           \n");
-		c = getch();
-		switch (c)
+		while (a)
 		{
-		case '1':
-		{
-			break;
+			printf("----------------------------\n");
+			printf("          请选择           :\n");
+			printf("       1.重新输入           \n");
+			printf("       0.退出程序           \n");
+			c = getch();
+			switch (c)
+			{
+			case '1':
+			{
+				a = 0;
+				break;
+			}
+			case '0':
+			{
+				op = 0;
+				a = 0;
+				break;
+			}
+			default:
+			{
+				system("cls");
+				printf("输入错误，请重新输入\n");
+				break;
+			}
+			}
 		}
-		case '0':
-		{
-			op = 0;
-			break;
-		}
-		default:
-		{
-			printf("输入错误，请重新输入");
-			break;
-		}
-		}
+		
 	}
 	return NULL;
 }
@@ -619,6 +737,7 @@ void approveLeaveRequest(PInfo* head)
 	int op = 1;
 	do
 	{
+		system("cls");
 		printf("请选择：\n");
 		printf("       1.批准请假        \n");
 		printf("       2.驳回请假        \n");
@@ -633,6 +752,7 @@ void approveLeaveRequest(PInfo* head)
 			int t = 1;
 			while (t)
 			{
+				system("cls");
 				printf("请输入批准请假的用户名\n");
 				char user[100];
 				scanf("%s", user);
@@ -644,12 +764,25 @@ void approveLeaveRequest(PInfo* head)
 					{
 						tem->data.leave = 3;
 						printf("%s已批准请假\n", tem->data.user);
+						system("pause");
 						t = 0;
 						break;
 					}
 					if (strcmp(user, tem->data.user) != 0 && tem->next == NULL)
-						printf("未查询到此人，请重新输入：\n");
+					{
+						printf("未查询到此人\n");
+						char tis = '1';
+						printf("按0退出，按其余键继续\n");
+						tis = getch();
+						if (tis == '0')
+						{
+							printf("退出\n");
+							t = 0;
+						}
+						system("pause");
+					}
 				}
+				
 			}
 			break;
 		}
@@ -670,11 +803,24 @@ void approveLeaveRequest(PInfo* head)
 						temp->data.leave = 2;
 						printf("%s已驳回请假\n", temp->data.user);
 						e = 0;
+						system("pause");
 						break;
 					}
 					if (strcmp(user, temp->data.user) != 0 && temp->next == NULL)
-						printf("未查询到此人，请重新输入：\n");
+					{
+						printf("未查询到此人\n");
+						char tim = '1';
+						printf("按0退出，按其余键继续\n");
+						tim = getch();
+						if (tim == '0')
+						{
+							printf("退出");
+							e = 0;
+						}
+						system("pause");
+					}
 				}
+				
 			}
 			break;
 		}
@@ -703,12 +849,26 @@ void approveLeaveRequest(PInfo* head)
 					{
 						tempe->data.leave = 0;
 						printf("%s已结束假期\n", tempe->data.user);
+						system("pause");
 						k = 0;
 						break;
 					}
 					if (strcmp(user, tempe->data.user) != 0 && tempe->next == NULL)
-						printf("未查询到此人，请重新输入：\n");
+					{
+						printf("未查询到此人\n");
+						char ti = '1';
+						printf("按0退出，按其余键继续\n");
+						ti = getch();
+						if (ti == '0')
+						{
+							printf("退出");
+							k = 0;
+						}
+						system("pause");
+					}
+					
 				}
+			
 			}
 			break;
 		}
@@ -721,6 +881,7 @@ void approveLeaveRequest(PInfo* head)
 		default :
 		{
 			printf("输入错误，请重新输入：\n");
+			system("pause");
 		}
 		}
 
@@ -783,8 +944,7 @@ void MenuStuff()
 	printf("--------------------------------\n");
 	printf("            1.打卡          \n");
 	printf("            2.请假		    \n");
-	printf("            3.出差          \n");
-	printf("            4.签退          \n");
-	printf("          5.考勤记录        \n");
+	printf("            3.签退          \n");
+	printf("          4.考勤记录        \n");
 	printf("          0.退出登录        \n");
 }

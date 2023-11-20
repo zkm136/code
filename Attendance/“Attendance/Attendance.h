@@ -20,6 +20,7 @@ typedef struct PersonData
 	char user[20];
 	STime time;
 	int leave;
+	int judge;
 }PData;
 typedef PData InfoDate;
 
@@ -38,7 +39,7 @@ void Staff(PInfo** head);//员工
 void Admin(PInfo** head);//管理员
 void loadStaff(PInfo* head);//打开文件
 void SaveStaff(PInfo* head);//保存文件
-void PushBack(PInfo*head);//尾插，添加员工
+void PushBack(PInfo*head,int judge);//尾插，添加员工
 void PrintData(PInfo* head);//打印员工信息
 void PopMid(PInfo* head);//删除员工
 int AdminAccount(PInfo* head);//管理员登录

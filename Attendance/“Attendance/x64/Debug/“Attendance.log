@@ -1,10 +1,10 @@
 ﻿  Attendance.c
 D:\code\Attendance\“Attendance\Attendance.c(17,12): warning C4013: “getch”未定义；假设外部返回 int
-D:\code\Attendance\“Attendance\Attendance.c(41,19): warning C4047: “函数”:“PInfo *”与“PInfo **”的间接级别不同
-D:\code\Attendance\“Attendance\Attendance.c(41,19): warning C4024: “CheckIntime”: 形参和实参 1 的类型不同
-D:\code\Attendance\“Attendance\Attendance.c(47,20): warning C4047: “函数”:“PInfo *”与“PInfo **”的间接级别不同
-D:\code\Attendance\“Attendance\Attendance.c(47,20): warning C4024: “RequestLeave”: 形参和实参 1 的类型不同
-D:\code\Attendance\“Attendance\Attendance.c(59,20): warning C4047: “函数”:“PInfo *”与“PInfo **”的间接级别不同
-D:\code\Attendance\“Attendance\Attendance.c(59,20): warning C4024: “CheckOutTime”: 形参和实参 1 的类型不同
-D:\code\Attendance\“Attendance\Attendance.c(620,19): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+D:\code\Attendance\“Attendance\Attendance.c(44,19): warning C4047: “函数”:“PInfo *”与“PInfo **”的间接级别不同
+D:\code\Attendance\“Attendance\Attendance.c(44,19): warning C4024: “CheckIntime”: 形参和实参 1 的类型不同
+D:\code\Attendance\“Attendance\Attendance.c(52,20): warning C4047: “函数”:“PInfo *”与“PInfo **”的间接级别不同
+D:\code\Attendance\“Attendance\Attendance.c(52,20): warning C4024: “RequestLeave”: 形参和实参 1 的类型不同
+D:\code\Attendance\“Attendance\Attendance.c(60,20): warning C4047: “函数”:“PInfo *”与“PInfo **”的间接级别不同
+D:\code\Attendance\“Attendance\Attendance.c(60,20): warning C4024: “CheckOutTime”: 形参和实参 1 的类型不同
+D:\code\Attendance\“Attendance\Attendance.c(718,19): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
   “Attendance.vcxproj -> D:\code\Attendance\x64\Debug\“Attendance.exe
