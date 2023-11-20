@@ -6,18 +6,19 @@
 #include<stdbool.h>
 
 
-typedef struct CheckinTime
+typedef struct StuffTime
 {
 	time_t checkInTime;
-	struct CheckinTime* next;
-}CITime;
-
+	time_t checkOutTime;
+	int checkIn;
+	int checkOut;
+}STime;
 typedef struct PersonData
 {
 	char account[50];
 	char password[20];
 	char user[20];
-	time_t time;
+	STime time;
 	int leave;
 }PData;
 typedef PData InfoDate;
@@ -44,6 +45,7 @@ int AdminAccount(PInfo* head);//管理员登录
 void UpdateStaffInfo(PInfo*head);//更新员工信息
 void MenuStuff();//员工菜单
 void CheckIntime(PInfo* head, PInfo* cur);//员工打卡
+void CheckOutTime(PInfo* head, PInfo* cur);//员工签退
 PInfo* StuffAccount(PInfo* head);//员工登录
 void RequestLeave(PInfo* head, PInfo* cur);//员工请假
 void approveLeaveRequest(PInfo*head);//请假批准

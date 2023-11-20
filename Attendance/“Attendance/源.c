@@ -11,6 +11,7 @@ int main()
 	int swi = 1;
 	do
 	{
+		system("cls");
 		Option();
 		op = getch();
 		switch (op)
